@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <header>
+        <div class="left-side">
+          <a href="#"> <img src="logo.png" alt=""> </a>
+        </div>
+        <div class="right-side">
+          <div class="nav-link-wrapper"> <a href="index.html">Home</a> </div>
+          <div class="nav-link-wrapper"> <a href="">Menu</a> </div>
+          <div class="nav-link-wrapper"> <a href="#contact">Contact</a> </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center" data-price="349">
+                <img class="item" src="thumb1.png" alt="">
+                <h5>Starbucks Special</h5>
+                <p>Rs.349</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center" data-price="399">
+                <img class="item" src="thumb2.png" alt="">
+                <h5>Caramel Milk Shake</h5>
+                <p>Rs.399</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            <!-- Add more items as needed -->
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center">
+                <img class="item" src="thumb3.png" alt="">
+                <h5>Strawberry Ice Cream Milk</h5>
+                <p>Rs.349</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center">
+                <img class="item" src="icetea.jpg" alt="">
+                <h5>Ice Tea</h5>
+                <p>Rs.299</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center">
+                <img class="item" src="coldcoffee.jpg" alt="">
+                <h5>Cold coffee</h5>
+                <p>Rs.449</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center">
+                <img class="item" src="hotchoco.jpg" alt="">
+                <h5>Hot Chocolate</h5>
+                <p>Rs.299</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center">
+                <img class="item" src="coldbrew.jpg" alt="">
+                <h5>Cold Brew coffee with Milk</h5>
+                <p>Rs.249</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            <div class="mt-5 col-6 col-md-4 col-lg-3 text-center">
+                <img class="item" src="vanilla.jpg" alt="">
+                <h5>Vanilla Sweet Cream Coffee</h5>
+                <p>Rs.399</p>
+                <button class="btn btn-info">Buy Now</button>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+    
+    <!-- Add the cart button and cart division -->
+    <div class="cart">
+        <button class="btn btn-primary" id="cartButton">View Cart</button>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-2 col-md-3 col-lg-4 text-center">
+                    <img src="logo.png" alt="">
+                    <h4 class="text-center mt-3 font-weight-bold">Starbucks</h4>
+                </div>
+                <div class="col-10 col-md-9 col-lg-8 text-center">
+                    <h5>Contact Us</h5>
+                    <div class="box">
+                        <a href="https://www.facebook.com/Starbucks/"> <img class = "facebook" src="facebook.png" alt=""></a>
+                        <a class="ml-5" href="https://www.instagram.com/starbucks/?hl=en"> <img src="instagram.png" alt=""></a>
+                        <a class="ml-5" href="https://twitter.com/starbucksindia?lang=en"> <img src="twitter.png" alt=""></a>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const cartButton = document.getElementById('cartButton');
+        const cartItemsDiv = document.querySelector('.cart-items');
+        const buyButtons = document.querySelectorAll('.btn.btn-info');
+
+        const cartItems = [];
+
+        buyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const priceElement = button.parentElement.querySelector('p');
+                const price = parseFloat(priceElement.innerText.replace('Rs.', ''));
+                const itemName = button.parentElement.querySelector('h5').innerText;
+
+                const itemIndex = cartItems.findIndex(item => item.name === itemName);
+
+                if (itemIndex !== -1) {
+                    cartItems[itemIndex].quantity += 1;
+                } else {
+                    cartItems.push({ name: itemName, price: price, quantity: 1 });
+                }
+
+                updateCart();
+            });
+        });
+
+        function updateCart() {
+            cartItemsDiv.innerHTML = '';
+
+            if (cartItems.length === 0) {
+                cartItemsDiv.innerHTML = '<p>No items in the cart.</p>';
+                return;
+            }
+
+            cartItems.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('cart-item');
+                itemDiv.innerHTML = `
+                    <p>${item.name} x ${item.quantity}</p>
+                    <p>Rs.${item.price * item.quantity}</p>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+        }
+
+        cartButton.addEventListener('click', () => {
+            updateCart();
+            const totalAmount = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+            alert(`Total Amount in Cart: Rs.${totalAmount}`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  body{
+    overflow-x: hidden;
+  }
+  
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 10px auto;
+  }
+  
+  header .left-side a img{
+    width: 80px;
+  }
+  
+  header .right-side{
+    display: flex;
+  }
+  
+  header .right-side .nav-link-wrapper a{
+    padding: 10px;
+    margin: 10px;
+    text-decoration: none;
+    color: black;
+  }
+  .item{
+    height:170px;
+  }
+  h5{
+    margin-top: 20px;
+  }
+  footer{
+    background-image: linear-gradient(white,green);
+  }
+  .box{
+    text-align: center;
+    margin-top: 20px;
+  }
