@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image:url('https://c1.wallpaperflare.com/preview/20/618/473/coffee-cafe-tea-lifestyle.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    .container{
+        display:grid;
+        height:100vh;
+        grid-template-columns:1fr 1fr 1fr 1fr;
+        grid-template-rows:0.5fr 1.5fr 1fr 0.5fr;
+        grid-gap:10px;
+        grid-template-areas:  
+        'nav nav nav nav'
+        'main main main main'
+        'main main main main'
+        'footer footer footer footer';
+    }
+    .nav{
+        
+        grid-area:nav;
+        
+    }
+    h1,h3{
+        font-weight: 1000;
+        font-size: 100px;
+        color: whitesmoke;
+    }
+    .side{
+        
+        grid-area:side;
+    }
+    .main{
+        
+        grid-area:main;
+    }
+    
+    .footer{
+        
+        grid-area:footer;
+    }
+    button {
+        padding: 10px 15px 10px 15px;
+        border-radius: 30px;
+        margin: 10px;
+    }
+    @media only screen and (max-width:550px){
+        .container{
+                display:grid;
+                height:100vh;
+                grid-template-columns:1fr;
+                grid-template-rows:0.2fr .2fr 1fr 0.8fr .8fr .8fr .9fr .2fr;
+                grid-gap:10px;
+                grid-template-areas:  
+                'nav'
+                'side'
+                'main'
+                'footer';
+
+    }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+          <center><h1>Welcome To Starbucks</h1></center>
+        </div>
+        <div class="side"></div>
+        <div class="main">
+            <center><h3>Hi Amigos....,,</h3></p></center>
+            <center><a href="/login"><button>Login</button></a>
+              <a href="/signup"><button>SignUp</button></a></center>
+        </div>
+        <div class="footer"></div>  
+</div>
+</body>
+</html>
